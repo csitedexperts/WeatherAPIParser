@@ -1,12 +1,8 @@
 package parserClasses;
 
 import java.util.Iterator;
-
-import org.json.JSONException;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class WeatherAPIParser {
 
@@ -21,20 +17,26 @@ public class WeatherAPIParser {
 		String jsonStr = RESTfulAPIOperations.restful_GET_Operation(apiURL);
 		System.out.println("jsonStr: "+jsonStr);
 
-		JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(jsonStr);
-
+		JSONObject jsonObject = new JSONObject(jsonStr);
 		JSONObject queryObj = jsonObject.getJSONObject("query");
-		System.out.println("query Object: "+queryObj);
+		System.out.println("JSON query Object: "+queryObj);
+
+		/* 
+		 // Alternatively, using net.sf.json.JSONSerializer  .....	
+		 JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(jsonStr);
+		 JSONObject queryObj = jsonObject.getJSONObject("query");
+		 System.out.println("query Object: "+queryObj);
+		 */
 
 		System.out.println("count Numnber: "  + queryObj.getLong("count"));
 		System.out.println("created String: " + queryObj.getString("created"));
 		System.out.println("lang String: "    + queryObj.getString("lang"));
-		System.out.println("results Object: "  + queryObj.getString("results"));
+		//		System.out.println("results Object: "  + queryObj.getString("results"));
 
 		System.out.println("count Numnber: "  + queryObj.getLong("count"));
 		System.out.println("created String: " + queryObj.getString("created"));
 		System.out.println("lang String: "    + queryObj.getString("lang"));
-		System.out.println("results Object: "  + queryObj.getString("results"));
+		//		System.out.println("results Object: "  + queryObj.getString("results"));
 
 		System.out.println("channel Object: "  + queryObj.getJSONObject("results").getJSONObject("channel"));
 
@@ -76,7 +78,7 @@ public class WeatherAPIParser {
 		System.out.println("forecast JSONArray : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast"));
 
 
-		System.out.println("forecast JSONArray size : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast").size());
+		System.out.println("forecast JSONArray size : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast").length());
 
 		System.out.println("forecast JSONArray class : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast").getClass());
 
@@ -89,7 +91,7 @@ public class WeatherAPIParser {
 		}
 
 
-		for(int i = 0; i < forcastJSONArray.size();i++) {
+		for(int i = 0; i < forcastJSONArray.length();i++) {
 			JSONObject forcastJSONObject = forcastJSONArray.getJSONObject(i);
 			System.out.println(forcastJSONObject);
 
