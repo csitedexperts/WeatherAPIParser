@@ -1,4 +1,4 @@
-package apiParser_classes;
+package parserClasses;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;

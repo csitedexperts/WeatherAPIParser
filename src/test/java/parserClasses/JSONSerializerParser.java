@@ -1,4 +1,4 @@
-package apiParser_classes;
+package parserClasses;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

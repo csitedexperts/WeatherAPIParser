@@ -1,4 +1,4 @@
-package apiParser_classes;
+package parserClasses;
 
 import org.json.JSONArray;
 import org.json.JSONException;
